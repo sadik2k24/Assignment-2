@@ -1,0 +1,64 @@
+public class Smartphone {
+    private String brand;
+    private String model;
+    private int storageCapacity;
+
+    public Smartphone(String brand, String model, int initialStorage) {
+        this.brand = brand;
+        this.model = model;
+        this.storageCapacity = initialStorage;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public int getStorageCapacity() {
+        return storageCapacity;
+    }
+
+    public void setStorageCapacity(int storageCapacity) {
+        if (storageCapacity > 0) {
+            this.storageCapacity = storageCapacity;
+        } else {
+            System.out.println("Error: Storage capacity must be positive.");
+        }
+    }
+
+    public void increaseStorage(int additionalStorage) {
+        if (additionalStorage > 0) {
+            this.storageCapacity += additionalStorage;
+            System.out.println("Storage increased! Added " + additionalStorage + " GB. New total: " + this.storageCapacity + " GB");
+        } else {
+            System.out.println("Storage increase failed: Must add a positive amount of storage.");
+        }
+    }
+
+    public static void main(String[] args) {
+        Smartphone myPhone = new Smartphone("Apple", "iPhone 15", 256);
+
+        System.out.println("Initial Model: " + myPhone.getModel());
+        System.out.println("Initial Storage: " + myPhone.getStorageCapacity() + " GB");
+
+        myPhone.setBrand("Google");
+        myPhone.setModel("Pixel 8");
+
+        System.out.println("\nUpdated Brand: " + myPhone.getBrand());
+
+        myPhone.increaseStorage(128);
+
+        System.out.println("Final Storage: " + myPhone.getStorageCapacity() + " GB");
+    }
+}
