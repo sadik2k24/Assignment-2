@@ -1,0 +1,38 @@
+public class BankAccount {
+    private String accountNumber;
+    private double balance;
+
+    public BankAccount(String accountNumber, double initialBalance) {
+        this.accountNumber = accountNumber;
+        this.balance = initialBalance;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public static void main(String[] args) {
+        BankAccount account = new BankAccount("987654321", 1500.75);
+
+        System.out.println("Account Number: " + account.getAccountNumber());
+        System.out.println("Initial Balance: $" + account.getBalance());
+
+        account.setBalance(2000.50);
+        account.setAccountNumber("1122334455");
+
+        System.out.println("New Account Number: " + account.getAccountNumber());
+        System.out.println("Updated Balance: $" + account.getBalance());
+    }
+}
