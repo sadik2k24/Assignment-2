@@ -1,0 +1,73 @@
+public class Movie {
+    // Private instance variables (data hiding)
+    private String title;
+    private String director;
+    private int duration; // Duration in minutes
+
+    // Constructor to create a new Movie object
+    public Movie(String title, String director, int duration) {
+        this.title = title;
+        this.director = director;
+        this.duration = duration;
+    }
+
+    // Public Getter methods (to read the private variables)
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDirector() {
+        return director;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    // Public Setter methods (to change the private variables)
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
+    public void setDuration(int duration) {
+        if (duration > 0) {
+            this.duration = duration;
+        } else {
+            System.out.println("Error: Duration must be positive.");
+        }
+    }
+
+    // Method to return a formatted string of movie details
+    public String getMovieDetails() {
+        // Calculate hours and remaining minutes for a nice display
+        int hours = this.duration / 60;
+        int minutes = this.duration % 60;
+        
+        return "Title: " + this.title + 
+               "\nDirector: " + this.director + 
+               "\nDuration: " + this.duration + " minutes (" + hours + "h " + minutes + "m)";
+    }
+
+    public static void main(String[] args) {
+        // Create a Movie object
+        Movie movie1 = new Movie("The Java Adventure", "J. Gosling", 150);
+
+        System.out.println("--- Initial Movie Details ---");
+        System.out.println(movie1.getMovieDetails());
+
+        movie1.setDirector("A. Turing");
+        movie1.setDuration(125);
+        
+        System.out.println("\n--- Updated Movie Details ---");
+        System.out.println("New Director Check: " + movie1.getDirector()); 
+
+
+        System.out.println("\n" + movie1.getMovieDetails());
+    }
+}
