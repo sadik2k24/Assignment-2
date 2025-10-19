@@ -1,0 +1,81 @@
+import java.text.NumberFormat;
+import java.util.Locale;
+
+public class Book {
+    private String title;
+    private String author;
+    private double price;
+
+    public Book(String title, String author, double price) {
+        this.title = title;
+        this.author = author;
+        this.price = price;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        if (price >= 0) {
+            this.price = price;
+        } else {
+            System.out.println("Error: Price cannot be negative.");
+        }
+    }
+
+    public void applyDiscount(double percentage) {
+        if (percentage > 0 && percentage <= 100) {
+            double discountAmount = this.price * (percentage / 100.0);
+            this.price -= discountAmount;
+            System.out.println("Discount of " + percentage + "% applied. New price: " + formatCurrency(this.price));
+        } else {
+            System.out.println("Error: Discount percentage must be between 0 and 100.");
+        }
+    }
+    
+    // Helper method for clean currency formatting in the main demonstration
+    private String formatCurrency(double amount) {
+        NumberFormat formatter = NumberFormat.getCurrencyInstance(Locale.US);
+        return formatter.format(amount);
+    }
+
+    public static void main(String[] args) {
+        Book book1 = new Book("The Java Way", "A. Programmer", 49.99);
+
+        System.out.println("--- Initial Book Details ---");
+        System.out.println("Title: " + book1.getTitle());
+        System.out.println("Author: " + book1.getAuthor());
+        System.out.println("Price: " + book1.formatCurrency(book1.getPrice()));
+
+       
+        book1.setAuthor("B. Coder");
+        book1.setPrice(55.00);
+        
+        System.out.println("\n--- Updated Details ---");
+        System.out.println("Author: " + book1.getAuthor());
+        System.out.println("Price: " + book1.formatCurrency(book1.getPrice()));
+        
+   
+        System.out.println("\n--- Applying Discount ---");
+        book1.applyDiscount(20.0);
+        
+        System.out.println("Final Price Check: " + book1.formatCurrency(book1.getPrice()));
+    }
+}
