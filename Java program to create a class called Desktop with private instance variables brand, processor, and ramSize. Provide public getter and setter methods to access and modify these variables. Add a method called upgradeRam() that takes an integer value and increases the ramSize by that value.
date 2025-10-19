@@ -1,0 +1,62 @@
+public class Desktop {
+    private String brand;
+    private String processor;
+    private int ramSize;
+
+    public Desktop(String brand, String processor, int initialRamSize) {
+        this.brand = brand;
+        this.processor = processor;
+        this.ramSize = initialRamSize;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getProcessor() {
+        return processor;
+    }
+
+    public void setProcessor(String processor) {
+        this.processor = processor;
+    }
+
+    public int getRamSize() {
+        return ramSize;
+    }
+
+    public void setRamSize(int ramSize) {
+        if (ramSize > 0) {
+            this.ramSize = ramSize;
+        } else {
+            System.out.println("Error: RAM size must be positive.");
+        }
+    }
+
+    public void upgradeRam(int additionalRam) {
+        if (additionalRam > 0) {
+            this.ramSize += additionalRam;
+            System.out.println("RAM upgraded! Added " + additionalRam + " GB. New size: " + this.ramSize + " GB");
+        } else {
+            System.out.println("Upgrade failed: Must add a positive amount of RAM.");
+        }
+    }
+
+    public static void main(String[] args) {
+        Desktop myPC = new Desktop("HP", "Intel i5", 8);
+
+        System.out.println("Initial Brand: " + myPC.getBrand());
+        System.out.println("Initial RAM: " + myPC.getRamSize() + " GB");
+
+        myPC.setProcessor("Intel i9");
+        
+        myPC.upgradeRam(8);
+
+        System.out.println("Updated Processor: " + myPC.getProcessor());
+        System.out.println("Final RAM: " + myPC.getRamSize() + " GB");
+    }
+}
